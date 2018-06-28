@@ -11,8 +11,8 @@ config_schema:
   - ["relay.topic", "s", "relay/channel1", {title: "Topic for relay"}]
   - ["relay.pin", "i", 0, {title: "Pin for motion sensor"}]
   - ["relay.delay", "i", 60, {title: "Delay for the relay"}]
-  - ["relay.stateOn", "d", 0, {title: "Pin state for ON signal"}]
-  - ["relay.stateOff", "d", 1, {title: "Pin state for OFF signal"}]
+  - ["relay.stateOn", "i", 0, {title: "Pin state for ON signal"}]
+  - ["relay.stateOff", "i", 1, {title: "Pin state for OFF signal"}]
   
 libs:
   - origin: https://github.com/mongoose-os-libs/mjs
