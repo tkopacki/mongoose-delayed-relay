@@ -13,7 +13,7 @@ function init() {
     MQTT.sub(Cfg.get('relay.topic'), function (connection, topic, message) {
         if (message === "0") {
             print('OFF signal recieved, starting counter...');
-            let startCounting = true;
+            startCounting = true;
             counter = 0;
         } else {
             GPIO.write(Cfg.get('relay.pin'), Cfg.get('relay.stateOn'));
