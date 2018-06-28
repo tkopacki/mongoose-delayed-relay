@@ -9,14 +9,17 @@ let startCounting = false;
 
 function init() {
     GPIO.set_mode(Cfg.get('relay.pin'), GPIO.MODE_OUTPUT);
+    GPIO.set_mode(1, GPIO.MODE_OUTPUT);
     GPIO.write(Cfg.get('relay.pin'), Cfg.get('relay.stateOff'));
     MQTT.sub(Cfg.get('relay.topic'), function (connection, topic, message) {
         if (message === "0") {
+            GPIO.write(1, 0);
             print('OFF signal recieved, starting counter...');
             MQTT.pub('home/bathroom/callback', 'OFF signal recieved, starting counter...');
             startCounting = true;
             counter = 0;
         } else {
+            GPIO.write(1, 1);
             GPIO.write(Cfg.get('relay.pin'), Cfg.get('relay.stateOn'));
             print('Relay set to ON');
             MQTT.pub('home/bathroom/callback', 'Relay set to ON');
