@@ -12,10 +12,12 @@ function init() {
     GPIO.write(Cfg.get('relay.pin'), Cfg.get('relay.stateOff'));
     MQTT.sub(Cfg.get('relay.topic'), function (connection, topic, message) {
         if (message === "0") {
+            print('OFF signal recieved, starting counter...');
             let startCounting = true;
             counter = 0;
         } else {
             GPIO.write(Cfg.get('relay.pin'), Cfg.get('relay.stateOn'));
+            print('Relay set to ON');
             startCounting = false;
         }
     }, null);
@@ -26,11 +28,13 @@ function setTimer() {
     Timer.set(1000 * 1, Timer.REPEAT, function () {
         if (startCounting) {
             if (counter >= delay) {
+                print('OFF signal confirmed');
                 GPIO.write(Cfg.get('relay.pin'), Cfg.get('relay.stateOff'));
                 startCounter = false;
                 counter = 0;
             } else {
                 counter++;
+                print('Still below treshold...');
             }
         }
     }, null);
