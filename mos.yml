@@ -1,0 +1,22 @@
+author: Tomasz Kopacki <tomasz@kopacki.eu>
+description: Motion Sensor lib
+type: lib
+version: 1.0
+
+filesystem:
+  - mjs_fs
+
+config_schema:
+  - ["relay", "o", {title: "Delayed relay configuration"}]
+  - ["relay.topic", "s", "relay/channel1", {title: "Topic for relay"}]
+  - ["relay.pin", "i", 0, {title: "Pin for motion sensor"}]
+  - ["relay.delay", "i", 60, {title: "Delay for the relay"}]
+  - ["relay.stateOn", "d", 0, {title: "Pin state for ON signal"}]
+  - ["relay.stateOff", "d", 1, {title: "Pin state for OFF signal"}]
+  
+libs:
+  - origin: https://github.com/mongoose-os-libs/mjs
+  - origin: https://github.com/mongoose-os-libs/mqtt
+  - origin: https://github.com/mongoose-os-libs/wifi
+
+manifest_version: 2017-05-18
