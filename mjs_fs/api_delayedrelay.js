@@ -30,7 +30,7 @@ function setTimer() {
             if (counter >= delay) {
                 print('OFF signal confirmed');
                 GPIO.write(Cfg.get('relay.pin'), Cfg.get('relay.stateOff'));
-                startCounter = false;
+                startCounting = false;
                 counter = 0;
             } else {
                 counter++;
